@@ -29,10 +29,10 @@ build:
         code: |
           nginx
     - script:
-        name: install curl ruby python
+        name: install curl ruby
         code: |
           apt-get update
-          apt-get install -y curl ruby python
+          apt-get install -y curl ruby
     - script:
         name: ps
         code: |
@@ -44,8 +44,14 @@ build:
   after-steps:
     - asux/pretty-slack-notify:
         webhook_url: $slack_url
+        channel: devops
 deploy:
   steps:
+    - script:
+        name: install ruby python
+        code: |
+          apt-get update
+          apt-get install -y ruby python
     - asux/elastic-beanstalk-deploy:
         key: $AWS_ACCESS_KEY_ID
         secret: $AWS_SECRET_ACCESS_KEY
@@ -55,3 +61,4 @@ deploy:
   after-steps:
     - asux/pretty-slack-notify:
         webhook_url: $slack_url
+        channel: devops
