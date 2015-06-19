@@ -29,10 +29,10 @@ build:
         code: |
           nginx
     - script:
-        name: install curl
+        name: install curl ruby python
         code: |
           apt-get update
-          apt-get install -y curl
+          apt-get install -y curl ruby python
     - script:
         name: ps
         code: |
@@ -42,7 +42,7 @@ build:
         code: |
           curl http://127.0.0.1/
   after-steps:
-    - wantedly/pretty-slack-notify:
+    - asux/pretty-slack-notify:
         webhook_url: $slack_url
 deploy:
   steps:
@@ -53,5 +53,5 @@ deploy:
         env_name: $EB_ENV
         region: $AWS_REGION
   after-steps:
-    - wantedly/pretty-slack-notify:
+    - asux/pretty-slack-notify:
         webhook_url: $slack_url
