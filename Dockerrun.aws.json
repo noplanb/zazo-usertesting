@@ -1,14 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "nginx",
     "Update": "true"
   },
-  "Ports": [
-    {
-      "ContainerPort": "80"
-    }
-  ],
-  "Volumes": [],
-  "Logging": "/var/log/nginx"
+  "Logging": "/var/log/zazo-usertesting"
 }
