@@ -18,3 +18,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY ok /usr/share/nginx/www/_ah/start
 COPY ok /usr/share/nginx/www/_ah/health
 ADD public/ /usr/share/nginx/www/
+
+EXPOSE 80
