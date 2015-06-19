@@ -21,9 +21,29 @@ build:
     # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - script:
-        name: curl
+        name: link site
         code: |
-          curl http://localhost/
+          cp -fv public/index.html /usr/share/nginx/html
+    - script:
+        name: nginx
+        code: |
+          nginx
+    - script:
+        name: install curl
+        code: |
+          apt-get update
+          apt-get install -y curl
+    - script:
+        name: ps
+        code: |
+          ps aux | grep nginx
+    - script:
+        name: health check
+        code: |
+          curl http://127.0.0.1/
+  after-steps:
+    - wantedly/pretty-slack-notify:
+        webhook_url: $slack_url
 deploy:
   steps:
     - asux/elastic-beanstalk-deploy:
