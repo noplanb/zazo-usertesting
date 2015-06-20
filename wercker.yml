@@ -28,11 +28,8 @@ build:
         name: nginx
         code: |
           nginx
-    - script:
-        name: install curl ruby
-        code: |
-          apt-get update
-          apt-get install -y curl ruby
+    - install-packages:
+        packages: curl ruby
     - script:
         name: ps
         code: |
@@ -47,11 +44,8 @@ build:
         channel: devops
 deploy:
   steps:
-    - script:
-        name: install ruby python
-        code: |
-          apt-get update
-          apt-get install -y ruby python
+    - install-packages:
+        packages: ruby python
     - asux/elastic-beanstalk-deploy:
         key: $AWS_ACCESS_KEY_ID
         secret: $AWS_SECRET_ACCESS_KEY
