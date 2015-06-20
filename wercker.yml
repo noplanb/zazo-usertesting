@@ -45,7 +45,7 @@ build:
 deploy:
   steps:
     - install-packages:
-        packages: ruby python python-pip
+        packages: ruby python python-pip git
     - asux/elastic-beanstalk-deploy:
         key: $AWS_ACCESS_KEY_ID
         secret: $AWS_SECRET_ACCESS_KEY
