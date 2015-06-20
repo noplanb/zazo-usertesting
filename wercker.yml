@@ -58,6 +58,7 @@ deploy:
         app_name: $EB_APP
         env_name: $EB_ENV
         region: $AWS_REGION
+        debug: true
   after-steps:
     - asux/pretty-slack-notify:
         webhook_url: $slack_url
